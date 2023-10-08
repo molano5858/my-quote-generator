@@ -8,20 +8,20 @@ const loader = document.getElementById("loader");
 let apiQuote = [];
 
 // show loader
-function loading() {
+function showLoadingSpinner() {
   loader.hidden = false;
   quoteContainer.hidden = true;
 }
 
 // hide loader
-function complete() {
+function removeLoadingSpinner() {
   loader.hidden = true;
   quoteContainer.hidden = false;
 }
 
 // random function
 function newQuote() {
-  loading();
+  showLoadingSpinner();
   // pick a random qoute
   const quote = apiQuote[Math.floor(Math.random() * apiQuote.length)];
   //check if author is blank and replace it with 'Unknown'
@@ -41,11 +41,11 @@ function newQuote() {
 
   quoteText.textContent = quote.text;
   // when set quote, hide loader
-  complete();
+  removeLoadingSpinner();
 }
 
 async function getQuotes() {
-  loading();
+  showLoadingSpinner();
   const apiUrl = "https://jacintodesign.github.io/quotes-api/data/quotes.json";
   // a little delay to can see the loader
   await new Promise((resolve) => setTimeout(resolve, 1000));
